@@ -6,26 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HelloASPDotNET.Controllers
 {
-    [Route("/helloworld")]
+    // [Route("/helloworld")]
     public class HelloController : Controller
     {
         // GET: /<controller>/
         [HttpGet]
         public IActionResult Index()
         {
-            string html = "<form method='post' action='/helloworld/hello'>" +
-                "<input type='text' name='name' />" +
-                "<select name='lang'>" +
-                "<option value=''>Choose a language</option>" +
-                "<option value='en'>English</option>" +
-                "<option value='fr'>French</option>" +
-                "<option value='sp'>Spanish</option>" +
-                "<option value='gr'>German</option>" +
-                "<option value='it'>Italian</option>" +
-                "</select>" +
-                "<input type='submit' value='Greet Me!' />" +
-                "</form>";
-            return Content(html, "text/html");
+            return View();
         }
 
         // GET: /hello/welcome/
@@ -39,8 +27,8 @@ namespace HelloASPDotNET.Controllers
             return Content("<h1>Welcome to my app, " + name + "!</h1>", "text/html");
         }
 
-        [HttpGet("hello/{name?}/{lang?}")]
-        [HttpPost("hello")]
+        [HttpPost]
+        [Route("/hello")]
         public IActionResult Message(string name = "World", string lang ="en")
         {
             if (lang == "it")
